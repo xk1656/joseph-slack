@@ -4,6 +4,10 @@
   overflow-y: scroll;
   margin-bottom: 170px;
 
+  .scroll-to-bottom button {
+    display: none;
+  }
+
   .chat__header {
     display: flex;
     justify-content: space-between;
