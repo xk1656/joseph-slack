@@ -5,7 +5,6 @@ import "./Chat.styles.scss";
 import db from "../../firebase/firebase";
 import Message from "../Message/Message.component";
 import ChatInput from "../ChatInput/ChatInput.component";
-import ScrollToBottom from "react-scroll-to-bottom";
 
 const Chat = () => {
   const { roomId } = useParams();
@@ -31,34 +30,32 @@ const Chat = () => {
 
   return (
     <div className="chat">
-      <ScrollToBottom className="scroll-to-bottom">
-        <div className="chat__header">
-          <div className="chat__headerLeft">
-            <h4 className="chat__channelName">
-              <strong>{roomDetails ? roomDetails.name : "Welcome"}</strong>
-              <StarBorderOutlined />
-            </h4>
-          </div>
-          <div className="chat__headerRight">
-            <h4>
-              <InfoOutlined />
-              <p>Details</p>
-            </h4>
-          </div>
+      <div className="chat__header">
+        <div className="chat__headerLeft">
+          <h4 className="chat__channelName">
+            <strong>{roomDetails ? roomDetails.name : "Welcome"}</strong>
+            <StarBorderOutlined />
+          </h4>
         </div>
-        <div className="chat__messages">
-          {roomMessages.map(({ imageUrl, message, timestamp, user, id }) => (
-            <Message
-              imageUrl={imageUrl}
-              message={message}
-              timestamp={timestamp}
-              user={user}
-              key={id}
-            />
-          ))}
+        <div className="chat__headerRight">
+          <h4>
+            <InfoOutlined />
+            <p>Details</p>
+          </h4>
         </div>
-        <ChatInput channelId={roomId} channelName={roomDetails?.name} />
-      </ScrollToBottom>
+      </div>
+      <div className="chat__messages">
+        {roomMessages.map(({ imageUrl, message, timestamp, user, id }) => (
+          <Message
+            imageUrl={imageUrl}
+            message={message}
+            timestamp={timestamp}
+            user={user}
+            key={id}
+          />
+        ))}
+      </div>
+      <ChatInput channelId={roomId} channelName={roomDetails?.name} />
     </div>
   );
 };
